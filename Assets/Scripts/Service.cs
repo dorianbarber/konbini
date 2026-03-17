@@ -17,6 +17,8 @@ public class Service : MonoBehaviour, ICustomerInteractable, IPlayerInteractable
 
     // ── ICustomerInteractable ────────────────────────────────────────────────
 
+    public bool RequiresPlayerService => true;
+
     public bool CustomerCanInteract(Customer customer)
     {
         // Only one customer can occupy a service point at a time.
@@ -62,11 +64,9 @@ public class Service : MonoBehaviour, ICustomerInteractable, IPlayerInteractable
     {
         if (waitingCustomer != null)
         {
-            waitingCustomer.CustomerCompleteInteraction(this);
+            // Let Customer drive the completion — it will call back into
+            // CustomerCompleteInteraction to clean up our state.
+            waitingCustomer.SignalInteractionComplete(this);
         }
-
-        waitingCustomer = null;
-        serviceProgress = 0f;
-        playerServicing = false;
     }
 }

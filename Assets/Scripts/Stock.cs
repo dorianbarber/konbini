@@ -18,6 +18,8 @@ public class Stock : MonoBehaviour, ICustomerInteractable, IPlayerInteractable
 
     // ── ICustomerInteractable ────────────────────────────────────────────────
 
+    public bool RequiresPlayerService => false;
+
     public bool CustomerCanInteract(Customer customer)
     {
         // Available units = stock not yet reserved by other customers.
