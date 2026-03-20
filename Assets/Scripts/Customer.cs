@@ -71,6 +71,13 @@ public class Customer : MonoBehaviour
 
     // ── Setup ────────────────────────────────────────────────────────────────
 
+    /// <summary>Called by CustomerSpawner to apply the day's patience value before Begin().</summary>
+    public void SetPatience(float p)
+    {
+        maxPatience = p;
+        patience = p;
+    }
+
     /// <summary>Called by CustomerSpawner to assign this customer's goal list.</summary>
     public void SetIntents(List<Intent> newIntents)
     {
